@@ -24,7 +24,7 @@ public class Server {
 	private String username;
 	private String password;
 	private String host;
-	private int port = 22; // default vıiks olla 22
+	private int port = 22; // default v√µiks olla 22
 	private Session session;
 	private Channel channel;
 	private InputStreamReader reader;
@@ -45,9 +45,9 @@ public class Server {
 		try {
 
 			JSch jsch = new JSch();
-			session = jsch.getSession(username, host, 22);// vıiks alati tˆˆtada
+			session = jsch.getSession(username, host, 22);// v√µiks alati t√∂√∂tada
 															// pordiga 22,
-															// vıibolla hiljem
+															// v√µibolla hiljem
 															// vaja muuta
 			session.setPassword(password);
 			session.setConfig("StrictHostKeyChecking", "no"); // - et ei viskaks
@@ -55,7 +55,7 @@ public class Server {
 																// fingerprint
 																// errori
 			session.connect();
-			channel = session.openChannel("shell");// kutsub v‰lja n‰htamatud
+			channel = session.openChannel("shell");// kutsub v√§lja n√§htamatud
 													// shelli, nagu putty
 
 			inStream = channel.getInputStream();
@@ -67,8 +67,7 @@ public class Server {
 			reader = new InputStreamReader(inStream);
 
 			Thread.sleep(100);
-			sendCommandAndReadOutput("cd /home/GrepToolPt");// et alustaks tˆˆd
-															// meie kaustast
+
 			return true;
 
 		} catch (JSchException | IOException | InterruptedException e) {
@@ -83,15 +82,15 @@ public class Server {
 			try {
 				toChannel.println(command + " ;echo " + Endofline); // peab
 																	// lisama
-																	// lıpetava
-																	// sına,
+																	// l√µpetava
+																	// s√µna,
 																	// mida
 																	// tagastab
 																	// server
-																	// tˆˆ
-																	// lıpetamisel,
+																	// t√∂√∂
+																	// l√µpetamisel,
 																	// muidu
-																	// l‰heb
+																	// l√§heb
 																	// lugemisel
 																	// endless
 																	// loopi
@@ -121,15 +120,15 @@ public class Server {
 																		// et
 																		// server
 																		// on
-																		// lıpetanud
+																		// l√µpetanud
 																		// vastamise
 				{
 					nextline = false;
 					break;
 				} else if (line.contains(Endofline))
 					startsaving = true;// alustab sisuga arvestamist alastest
-										// j‰rgmisest reast peale k‰sku, muidu
-										// server vıib ˆelda erinevaid tervitusi
+										// j√§rgmisest reast peale k√§sku, muidu
+										// server v√µib √∂elda erinevaid tervitusi
 										// ja muud meid mitte huvitavat infot
 				else if (startsaving)
 					output.add(line);
